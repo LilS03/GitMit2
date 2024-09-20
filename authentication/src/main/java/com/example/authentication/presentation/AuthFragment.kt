@@ -1,10 +1,11 @@
-package com.example.authentication
+package com.example.authentication.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.authentication.R
 
 class AuthFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
