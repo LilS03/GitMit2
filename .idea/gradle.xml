@@ -8,7 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/allusers" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/authentication" />
+            <option value="$PROJECT_DIR$/details" />
+            <option value="$PROJECT_DIR$/profil" />
+            <option value="$PROJECT_DIR$/userrepositories" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
