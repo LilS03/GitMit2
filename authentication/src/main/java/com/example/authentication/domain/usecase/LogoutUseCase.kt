@@ -2,10 +2,10 @@ package com.example.authentication.domain.usecase
 
 import com.example.authentication.domain.repository.AuthRepository
 
-class LoginUseCase(
+class LogoutUseCase(
     private val repository: AuthRepository
-){
-    fun login(token: String) {
-        return repository.login(token)
+) {
+    fun logout() {
+        return repository.logout()
     }
 }

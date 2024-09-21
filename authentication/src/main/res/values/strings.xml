@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo">Logo</string>
-    <string name="appName">GitMit</string>
+    <string name="appName">GitMit2</string>
     <string name="addToken">Add token</string>
     <string name="button">LogIn</string>
 </resources>

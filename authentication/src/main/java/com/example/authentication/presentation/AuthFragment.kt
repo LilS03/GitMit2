@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.authentication.R
 import com.example.authentication.data.utils.SharedPreferencesHelper
@@ -21,7 +22,6 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_auth, container, false)
-
         etToken = view.findViewById(R.id.etToken)
         btnLogIn = view.findViewById(R.id.btnLogin)
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
@@ -30,7 +30,7 @@ class AuthFragment : Fragment() {
             val token = etToken.text.trim().toString()
             if (token.isNotEmpty()) {
                 sharedPreferencesHelper.saveToken(token)
-                //openActivity()
+                openActivity()
             } else {
                 etToken.error = "Token cannot be empty"
             }
@@ -40,9 +40,10 @@ class AuthFragment : Fragment() {
     }
 
     // in this case i will open another activity
-//    private fun openActivity() {
+    private fun openActivity() {
 //        val intent = Intent(activity, Activity::class.java)
 //        startActivity(intent)
 //        activity?.finish()
-//    }
+        Toast.makeText(context, "Wait...", Toast.LENGTH_LONG).show()
+    }
 }
