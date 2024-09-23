@@ -10,7 +10,6 @@ class AuthViewModel(
     application: Application,
     private val repository: AuthRepository
 ) : AndroidViewModel(application) {
-    private val scope = CoroutineScope(Dispatchers.IO)
     private val token = repository.getToken()
     val login = token?.let { repository.login(it) }
 }

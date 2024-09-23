@@ -15,8 +15,4 @@ class AuthRepositoryImpl(context: Context):AuthRepository {
     override fun getToken(): String? {
         return sharedPreferencesHelper.getToken()
     }
-
-    override fun logout() {
-        sharedPreferencesHelper.clearToken()
-    }
 }

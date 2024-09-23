@@ -10,7 +10,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.example.authentication.presentation.LoginActivity
 import com.example.gitmit.ui.theme.GitMitTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,6 +31,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LoginActivityContainer() {
-    val context = LocalContext.current
-    context.startActivity(Intent(context, LoginActivity::class.java))
+//    val context = LocalContext.current
+//    context.startActivity(Intent(context, LoginActivity::class.java))
 }
