@@ -8,14 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.authentication.R
-import com.example.authentication.data.utils.SharedPreferencesHelper
 
 class AuthFragment : Fragment() {
-
+    private val viewModel: AuthViewModel by viewModels { AuthViewModel.Factory }
     private lateinit var etToken: EditText
     private lateinit var btnLogIn: Button
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,26 +23,20 @@ class AuthFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_auth, container, false)
         etToken = view.findViewById(R.id.etToken)
         btnLogIn = view.findViewById(R.id.btnLogin)
-        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         btnLogIn.setOnClickListener {
-            val token = etToken.text.trim().toString()
-            if (token.isNotEmpty()) {
-                sharedPreferencesHelper.saveToken(token)
-                openActivity()
-            } else {
-                etToken.error = "Token cannot be empty"
-            }
+            val token = etToken.text.toString()
+            viewModel.checkGitHubToken(token)
         }
 
+        viewModel.tokenStatus.observe(viewLifecycleOwner) { isValid ->
+            if (isValid) {
+                Toast.makeText(context, "Token is valid!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Invalid token!", Toast.LENGTH_SHORT).show()
+            }
+        }
         return view
     }
-
-    // in this case i will open another activity
-    private fun openActivity() {
-//        val intent = Intent(activity, Activity::class.java)
-//        startActivity(intent)
-//        activity?.finish()
-        Toast.makeText(context, "Wait...", Toast.LENGTH_LONG).show()
-    }
 }
+

@@ -3,10 +3,11 @@ package com.example.authentication.data.repository
 import android.content.Context
 import com.example.authentication.data.utils.SharedPreferencesHelper
 import com.example.authentication.domain.repository.AuthRepository
+import javax.inject.Inject
 
-class AuthRepositoryImpl(context: Context):AuthRepository {
-
-    private val sharedPreferencesHelper = SharedPreferencesHelper(context)
+class AuthRepositoryImpl @Inject constructor(
+    private val sharedPreferencesHelper: SharedPreferencesHelper
+):AuthRepository {
 
     override fun login(token: String) {
         sharedPreferencesHelper.saveToken(token)

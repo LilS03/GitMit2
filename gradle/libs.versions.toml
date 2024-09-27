@@ -1,6 +1,9 @@
 [versions]
 agp = "8.5.0"
+converterGson = "2.11.0"
 datastorePreferences = "1.1.1"
+hiltAndroidCompiler = "2.51.1"
+hiltNavigationCompose = "1.2.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -16,10 +19,16 @@ navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 activity = "1.9.2"
 datastoreCoreAndroid = "1.1.1"
+retrofit = "2.11.0"
+transportRuntime = "3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -40,6 +49,8 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-datastore-core-android = { group = "androidx.datastore", name = "datastore-core-android", version.ref = "datastoreCoreAndroid" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+transport-runtime = { group = "com.google.android.datatransport", name = "transport-runtime", version.ref = "transportRuntime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

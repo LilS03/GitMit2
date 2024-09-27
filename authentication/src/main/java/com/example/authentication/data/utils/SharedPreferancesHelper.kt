@@ -2,8 +2,9 @@ package com.example.authentication.data.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
-class SharedPreferencesHelper(context: Context) {
+class SharedPreferencesHelper @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 
     fun saveToken(token: String) {
