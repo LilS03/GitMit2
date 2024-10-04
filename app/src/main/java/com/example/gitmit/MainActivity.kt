@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun LoginActivityContainer() {
     val context = LocalContext.current
