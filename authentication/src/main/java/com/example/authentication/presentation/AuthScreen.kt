@@ -15,6 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.authentication.R
 
+
 @Composable
 fun AuthScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
     var token by remember { mutableStateOf("") }
@@ -42,7 +43,6 @@ fun AuthScreen(navController: NavController, authViewModel: AuthViewModel = view
         Button(onClick = { authViewModel.checkGitHubToken(token) }) {
             Text("Connect")
         }
-
         tokenStatus?.let { isSuccess ->
             if (isSuccess) {
                 navController.navigate("nextScreen")
