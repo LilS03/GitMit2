@@ -1,23 +1,34 @@
 package com.example.authentication.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.runtime.*
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.authentication.R
 
-
 @Composable
-fun AuthScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
+fun AuthScreen(
+    navigateOnSignOut: () -> Unit = {},
+    authViewModel: AuthViewModel = hiltViewModel()
+) {
     var token by remember { mutableStateOf("") }
     val tokenStatus by authViewModel.tokenStatus.observeAsState()
 
@@ -40,12 +51,14 @@ fun AuthScreen(navController: NavController, authViewModel: AuthViewModel = view
             label = { Text("Enter Token") }
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { authViewModel.checkGitHubToken(token) }) {
+        Button(onClick = {
+            authViewModel.checkGitHubToken(token)
+        }) {
             Text("Connect")
         }
         tokenStatus?.let { isSuccess ->
             if (isSuccess) {
-                navController.navigate("nextScreen")
+                navigateOnSignOut()
             } else {
                 Text("Invalid token, please try again.")
             }

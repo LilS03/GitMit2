@@ -3,20 +3,16 @@ package com.example.authentication.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.authentication.data.retrofit.AuthRetrofit
 import com.example.authentication.domain.model.Authentication
-import com.example.authentication.domain.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class AuthViewModel @Inject constructor(
-    private val repository: AuthRepository
-) : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor() : ViewModel() {
     private val _tokenStatus = MutableLiveData<Boolean>()
     val tokenStatus: LiveData<Boolean> get() = _tokenStatus
 
@@ -31,21 +27,5 @@ class AuthViewModel @Inject constructor(
                 _tokenStatus.value = false
             }
         })
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-                val application = checkNotNull(extras[APPLICATION_KEY])
-
-                return AuthViewModel(
-                    (application as AuthViewModel).repository
-                ) as T
-            }
-        }
     }
 }
