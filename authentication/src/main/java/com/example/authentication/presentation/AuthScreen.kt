@@ -12,8 +12,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -30,7 +30,7 @@ fun AuthScreen(
     authViewModel: AuthViewModel = hiltViewModel()
 ) {
     var token by remember { mutableStateOf("") }
-    val tokenStatus by authViewModel.tokenStatus.observeAsState()
+    val tokenStatus by authViewModel.tokenStatus.collectAsState()
 
     Column(
         modifier = Modifier
@@ -56,7 +56,7 @@ fun AuthScreen(
         }) {
             Text("Connect")
         }
-        tokenStatus?.let { isSuccess ->
+        tokenStatus.let { isSuccess ->
             if (isSuccess) {
                 navigateOnSignOut()
             } else {

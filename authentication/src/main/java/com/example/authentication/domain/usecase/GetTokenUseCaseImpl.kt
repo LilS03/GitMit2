@@ -2,10 +2,13 @@ package com.example.authentication.domain.usecase
 
 import com.example.authentication.domain.repository.AuthRepository
 
-class GetTokenUseCase(
+fun interface GetTokenUseCase{
+    operator fun invoke(): String?
+}
+class GetTokenUseCaseImpl(
     private val repository: AuthRepository
-) {
-    fun getToken(): String? {
+): GetTokenUseCase {
+    override fun invoke(): String? {
         return repository.getToken()
     }
 }
