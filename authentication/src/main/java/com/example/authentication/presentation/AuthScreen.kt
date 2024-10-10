@@ -23,7 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.authentication.R
+import androidx.compose.ui.tooling.preview.Preview
 
+@Preview(showBackground = true)
 @Composable
 fun AuthScreen(
     navigateOnSignOut: () -> Unit = {},

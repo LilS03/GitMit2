@@ -7,12 +7,13 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ):AuthRepository {
-
     override fun login(token: String) {
         sharedPreferencesHelper.saveToken(token)
     }
-
     override fun getToken(): String? {
         return sharedPreferencesHelper.getToken()
+    }
+    override fun exit(){
+        return sharedPreferencesHelper.clearToken()
     }
 }

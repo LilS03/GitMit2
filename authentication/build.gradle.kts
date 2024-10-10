@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.ui.tooling.preview.android)
     annotationProcessor(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
