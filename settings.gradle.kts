@@ -22,8 +22,8 @@ dependencyResolutionManagement {
 rootProject.name = "GitMit"
 include(":app")
 include(":authentication")
-include(":userrepositories")
-include(":allusers")
-include(":profil")
-include(":details")
+include(":features:userrepositories")
+include(":features:allusers")
+include(":features:profil")
+include(":features:details")
 include(":navigation")
