@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gitmit.ui.theme.GitMitTheme
 import com.example.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +23,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun ShowScreen(){
-    Navigation()
 }

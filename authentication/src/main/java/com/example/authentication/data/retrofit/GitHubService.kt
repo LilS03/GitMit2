@@ -7,5 +7,5 @@ import retrofit2.http.Header
 
 interface GitHubService {
     @GET("user")
-    suspend fun getUser(@Header("Authorization") token: String): Response<UserDto>
+    suspend fun getUser(@Header("Authorization") token: String): UserDto
 }

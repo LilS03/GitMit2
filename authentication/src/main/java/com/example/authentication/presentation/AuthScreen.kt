@@ -20,19 +20,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.authentication.R
-import androidx.compose.ui.tooling.preview.Preview
 
-@Preview(showBackground = true)
 @Composable
 fun AuthScreen(
     navigateOnSignOut: () -> Unit = {},
     authViewModel: AuthViewModel = hiltViewModel()
 ) {
-    var token by remember { mutableStateOf("") }
-    val tokenStatus by authViewModel.tokenStatus.collectAsState()
+    val token by authViewModel.token.collectAsState()
+    val isTokenValid by authViewModel.isTokenValid.collectAsState()
 
     Column(
         modifier = Modifier
@@ -49,21 +48,23 @@ fun AuthScreen(
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
             value = token,
-            onValueChange = { token = it },
+            onValueChange = { authViewModel.changeToken(it) },
             label = { Text("Enter Token") }
         )
+        if (isTokenValid) {
+
+        }
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            authViewModel.checkGitHubToken(token)
+            authViewModel.checkGitHubToken()
         }) {
-            Text("Connect")
-        }
-        tokenStatus.let { isSuccess ->
-            if (isSuccess) {
-                navigateOnSignOut()
-            } else {
-                Text("Invalid token, please try again.")
-            }
+            Text("Connect") //TODO inch connect???????????
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShowScreen(){
+    AuthScreen()
 }

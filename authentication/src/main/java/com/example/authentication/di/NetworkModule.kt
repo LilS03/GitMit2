@@ -12,6 +12,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    //move this method to core data di
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -20,6 +21,7 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     @Provides
     @Singleton
     fun provideGitHubService(retrofit: Retrofit): GitHubService {
