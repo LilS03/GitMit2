@@ -1,6 +1,7 @@
 package com.example.authentication.domain.usecase
 
 import com.example.authentication.domain.repository.AuthRepository
+import com.example.core.data.repository.PreferencesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
