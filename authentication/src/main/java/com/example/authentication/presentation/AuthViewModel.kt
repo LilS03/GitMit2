@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.authentication.domain.usecase.LoginUseCase
 import com.example.authentication.presentation.effect.AuthEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -24,13 +26,13 @@ class AuthViewModel @Inject constructor(
     private val _token = MutableStateFlow("")
     val token: StateFlow<String> get() = _token.asStateFlow()
 
-    private val _effectsFlow = MutableStateFlow(AuthEffect.NavigateToMain)
-    val effectsFlow: StateFlow<AuthEffect> get() = _effectsFlow.asStateFlow()
+    private val _authEffect = MutableSharedFlow<AuthEffect>()
+    val authEffect = _authEffect.asSharedFlow()
 
     fun checkGitHubToken() {
         loginUseCase(token.value).onEach { isValid ->
             _isTokenValid.update { isValid }
-            _effectsFlow.emit(AuthEffect.NavigateToMain)
+            _authEffect.emit(AuthEffect.NavigateToMain)
         }.catch {
             _isTokenValid.update { false }
         }.launchIn(viewModelScope)

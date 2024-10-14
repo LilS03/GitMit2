@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.ui.tooling.preview.android)
     implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     annotationProcessor(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
