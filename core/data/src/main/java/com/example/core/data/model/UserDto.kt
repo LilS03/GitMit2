@@ -1,4 +1,4 @@
-package com.example.authentication.data.model
+package com.example.core.data.model
 import com.google.gson.annotations.SerializedName
 
 data class UserDto(
