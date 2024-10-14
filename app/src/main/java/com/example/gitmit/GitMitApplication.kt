@@ -3,6 +3,4 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class GitMitApplication: Application() {
-
-}
+class GitMitApplication: Application()
