@@ -1,7 +1,7 @@
 package com.example.authentication.di
 
 import com.example.authentication.data.repository.AuthRepositoryImpl
-import com.example.authentication.data.utils.SharedPreferencesHelper
+import com.example.core.data.utils.SharedPreferencesHelper
 import com.example.authentication.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
