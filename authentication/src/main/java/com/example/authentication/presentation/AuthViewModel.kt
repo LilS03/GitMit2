@@ -24,10 +24,13 @@ class AuthViewModel @Inject constructor(
     private val _token = MutableStateFlow("")
     val token: StateFlow<String> get() = _token.asStateFlow()
 
+    private val _effectsFlow = MutableStateFlow("")
+    val effectsFlow: StateFlow<String> get() = _effectsFlow.asStateFlow()
+
     fun checkGitHubToken() {
         loginUseCase(token.value).onEach { isValid ->
             _isTokenValid.update { isValid }
-            sharedFlow.emit(AuthEffect.NavigateToMain)
+            _effectsFlow.emit(AuthEffect.NavigateToMain.toString())
         }.catch {
             _isTokenValid.update { false }
         }.launchIn(viewModelScope)
