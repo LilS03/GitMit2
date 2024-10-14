@@ -55,7 +55,7 @@ fun AuthScreen(
         Button(onClick = {
             authViewModel.checkGitHubToken()
         }) {
-            Text("Connect") //TODO inch connect???????????
+            Text("LogIn")
         }
     }
 }

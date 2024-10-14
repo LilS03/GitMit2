@@ -1,9 +1,9 @@
 package com.example.authentication.presentation
 
-import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.authentication.domain.usecase.LoginUseCase
+import com.example.authentication.presentation.effect.AuthEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
