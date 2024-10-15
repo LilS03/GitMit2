@@ -44,7 +44,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.ui.tooling.preview.android)
     testImplementation(libs.junit)
-    implementation(project(":authentication"))
+    implementation(project(":features:authentication"))
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     androidTestImplementation(libs.androidx.junit)

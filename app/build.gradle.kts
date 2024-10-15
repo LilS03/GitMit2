@@ -53,7 +53,7 @@ android {
 
 dependencies {
     // add projects
-    implementation(project(":authentication"))
+    implementation(project(":features:authentication"))
     implementation(project(":navigation"))
     //hilt
     kapt(libs.hilt.android.compiler)

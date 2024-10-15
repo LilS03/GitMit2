@@ -10,12 +10,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/authentication" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/allusers" />
+            <option value="$PROJECT_DIR$/features/authentication" />
             <option value="$PROJECT_DIR$/features/details" />
             <option value="$PROJECT_DIR$/features/profil" />
             <option value="$PROJECT_DIR$/features/userrepositories" />
