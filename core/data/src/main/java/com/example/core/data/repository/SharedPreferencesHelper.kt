@@ -2,9 +2,8 @@ package com.example.core.data.repository
 
 import android.content.SharedPreferences
 import com.example.core.domain.repository.PreferencesRepository
-import javax.inject.Inject
 
-class SharedPreferencesHelper @Inject constructor(
+class SharedPreferencesHelper(
     private val sharedPreferences: SharedPreferences
 ): PreferencesRepository {
 

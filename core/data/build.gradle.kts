@@ -41,19 +41,23 @@ android {
 }
 
 dependencies {
-
+    // add projects
+    implementation(project(":core:domain"))
+    // for hilt
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    // for retrofit
+    implementation(libs.retrofit)
+    // gson convert
+    implementation(libs.converter.gson)
+    // interceptor
+    implementation(libs.logging.interceptor)
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    annotationProcessor(libs.hilt.android.compiler)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.transport.runtime)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
-    implementation(project(":core:domain"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

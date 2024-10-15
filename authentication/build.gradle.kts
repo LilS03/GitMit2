@@ -41,28 +41,21 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.material3)
-    implementation(libs.material3)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.androidx.foundation.android)
-    implementation(libs.androidx.runtime.livedata)
-    implementation(libs.androidx.ui.tooling.preview.android)
+    // add projects
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
-    annotationProcessor(libs.hilt.android.compiler)
-    implementation(libs.hilt.android)
+    // retrofit
+    implementation(libs.retrofit)
+    // hilt
     kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.datastore.core.android)
-    implementation(libs.androidx.datastore.preferences)
+    // preview
+    implementation(libs.androidx.ui.tooling.preview.android)
+    //
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material3)
     implementation(libs.transport.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

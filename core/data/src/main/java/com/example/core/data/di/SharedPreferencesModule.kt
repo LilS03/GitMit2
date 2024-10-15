@@ -1,4 +1,4 @@
-package com.example.authentication.di
+package com.example.core.data.di
 
 import android.content.Context
 import android.content.SharedPreferences
