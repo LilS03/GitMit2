@@ -2,7 +2,7 @@ package com.example.authentication.domain.usecase
 
 import com.example.authentication.domain.repository.AuthRepository
 import com.example.core.data.dispatcher.GitDispatchers
-import com.example.core.data.repository.SharedPreferencesHelper
+import com.example.core.data.helper.SharedPreferencesHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map

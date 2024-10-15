@@ -11,7 +11,7 @@ class AuthRepositoryImpl @Inject constructor(
     private val gitHubService: GitHubService
 ):AuthRepository {
     override fun checkToken(token: String): Flow<Boolean> = flow {
-            gitHubService.getUser(token)
+            gitHubService.getUser("Bearer $token")
             emit(true)
     }.catch {
         emit(false)

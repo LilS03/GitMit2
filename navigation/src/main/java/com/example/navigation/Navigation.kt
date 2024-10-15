@@ -12,5 +12,8 @@ fun Navigation(){
         composable(route = Screen.AuthScreen.route){
             AuthScreen()
         }
+        composable(route = Screen.MainScreen.route) {
+            //MainScreen()
+        }
     }
 }

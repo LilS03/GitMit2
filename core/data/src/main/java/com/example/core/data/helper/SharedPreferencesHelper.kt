@@ -1,9 +1,10 @@
-package com.example.core.data.repository
+package com.example.core.data.helper
 
 import android.content.SharedPreferences
 import com.example.core.domain.repository.PreferencesRepository
+import javax.inject.Inject
 
-class SharedPreferencesHelper(
+class SharedPreferencesHelper @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ): PreferencesRepository {
 
@@ -14,6 +15,6 @@ class SharedPreferencesHelper(
         sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
     }
     override fun getToken(): String? {
-        return sharedPreferences.getString(TOKEN_KEY, null)
+        return sharedPreferences.getString(TOKEN_KEY, "")
     }
 }
