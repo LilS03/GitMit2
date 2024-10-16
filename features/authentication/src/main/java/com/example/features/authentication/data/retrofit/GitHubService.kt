@@ -1,4 +1,4 @@
-package com.example.authentication.data.retrofit
+package com.example.features.authentication.data.retrofit
 
 import com.example.core.data.model.UserDto
 import retrofit2.http.GET

@@ -11,10 +11,9 @@ class SharedPreferencesHelper @Inject constructor(
     companion object {
         private const val TOKEN_KEY = "token"
     }
-    override fun saveToken(token: String) {
+    override fun saveToken(token: String) =
         sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
-    }
-    override fun getToken(): String? {
-        return sharedPreferences.getString(TOKEN_KEY, "")
-    }
+
+    override fun getToken(): String? =
+        sharedPreferences.getString(TOKEN_KEY, "")
 }

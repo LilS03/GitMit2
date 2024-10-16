@@ -1,6 +1,6 @@
-package com.example.authentication.domain.usecase
+package com.example.features.authentication.domain.usecase
 
-import com.example.authentication.domain.repository.AuthRepository
+import com.example.features.authentication.domain.repository.AuthRepository
 import com.example.core.data.dispatcher.GitDispatchers
 import com.example.core.data.helper.SharedPreferencesHelper
 import kotlinx.coroutines.flow.Flow

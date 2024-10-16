@@ -1,9 +1,9 @@
-package com.example.authentication.presentation
+package com.example.features.authentication.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.authentication.domain.usecase.LoginUseCase
-import com.example.authentication.presentation.effect.AuthEffect
+import com.example.features.authentication.domain.usecase.LoginUseCase
+import com.example.features.authentication.presentation.effect.AuthEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

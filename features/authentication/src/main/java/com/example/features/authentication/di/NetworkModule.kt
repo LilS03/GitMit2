@@ -1,6 +1,6 @@
-package com.example.authentication.di
+package com.example.features.authentication.di
 
-import com.example.authentication.data.retrofit.GitHubService
+import com.example.features.authentication.data.retrofit.GitHubService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,6 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideGitHubService(retrofit: Retrofit): GitHubService {
-        return retrofit.create(GitHubService::class.java)
-    }
+    fun provideGitHubService(retrofit: Retrofit): GitHubService =
+        retrofit.create(GitHubService::class.java)
 }

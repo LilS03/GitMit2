@@ -1,7 +1,7 @@
-package com.example.authentication.di
+package com.example.features.authentication.di
 
-import com.example.authentication.domain.usecase.LoginUseCase
-import com.example.authentication.domain.usecase.LoginUseCaseImpl
+import com.example.features.authentication.domain.usecase.LoginUseCase
+import com.example.features.authentication.domain.usecase.LoginUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,7 +1,7 @@
-package com.example.authentication.di
+package com.example.features.authentication.di
 
-import com.example.authentication.data.repository.AuthRepositoryImpl
-import com.example.authentication.domain.repository.AuthRepository
+import com.example.features.authentication.data.repository.AuthRepositoryImpl
+import com.example.features.authentication.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,5 @@ object RepositoryModule {
     @Singleton
     fun provideAuthRepository(
         authRepositoryImpl: AuthRepositoryImpl
-    ): AuthRepository {
-        return authRepositoryImpl
-    }
+    ): AuthRepository = authRepositoryImpl
 }

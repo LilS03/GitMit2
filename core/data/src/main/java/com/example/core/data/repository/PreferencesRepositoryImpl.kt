@@ -11,7 +11,5 @@ class PreferencesRepositoryImpl @Inject constructor(
         sharedPreferencesHelper.saveToken(token)
     }
 
-    override fun getToken(): String {
-        return sharedPreferencesHelper.getToken().orEmpty()
-    }
+    override fun getToken(): String = sharedPreferencesHelper.getToken().orEmpty()
 }

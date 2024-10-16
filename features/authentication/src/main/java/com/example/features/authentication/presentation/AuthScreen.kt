@@ -1,6 +1,5 @@
-package com.example.authentication.presentation
+package com.example.features.authentication.presentation
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.authentication.R
-import com.example.authentication.presentation.effect.AuthEffect
+import com.example.features.authentication.R
+import com.example.features.authentication.presentation.effect.AuthEffect
 
 @Composable
 fun AuthScreen(
@@ -48,7 +48,7 @@ fun AuthScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.baseline_logo),
             contentDescription = "Logo",
             modifier = Modifier.size(100.dp)
