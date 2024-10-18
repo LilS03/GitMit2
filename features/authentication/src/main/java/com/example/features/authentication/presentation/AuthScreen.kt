@@ -50,26 +50,26 @@ fun AuthScreen(
     ) {
         Icon(
             painter = painterResource(id = R.drawable.baseline_logo),
-            contentDescription = "Logo",
+            contentDescription = R.string.logo.toString(),
             modifier = Modifier.size(100.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
             value = token,
             onValueChange = { authViewModel.changeToken(it) },
-            label = { Text("Enter Token") }
+            label = { Text(R.string.enterToken.toString()) }
         )
         Spacer(modifier = Modifier.height(16.dp))
         if(!isTokenValid){
             Text(
-                text = "Invalid token, please try again",
+                text = R.string.invalidToken.toString(),
                 color = Color.Red
             )
         }
         Button(onClick = {
             authViewModel.checkGitHubToken()
         }) {
-            Text("LogIn")
+            Text(R.string.logIn.toString())
         }
     }
 }

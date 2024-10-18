@@ -11,7 +11,6 @@ fun Navigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.AuthScreen.route) {
         composable(route = Screen.AuthScreen.route){
-            AuthScreen()
             AuthScreen(navigateToMainScreen = {
                 navController.navigate(Screen.MainScreen.route)
             })
