@@ -32,7 +32,9 @@ class AuthViewModel @Inject constructor(
     fun checkGitHubToken() {
         loginUseCase(token.value).onEach { isValid ->
             _isTokenValid.update { isValid }
-            _authEffect.emit(AuthEffect.NavigateToMain)
+            if(isValid){
+                _authEffect.emit(AuthEffect.NavigateToMain)
+            }
         }.catch {
             _isTokenValid.update { false }
         }.launchIn(viewModelScope)
