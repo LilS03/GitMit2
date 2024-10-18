@@ -1,6 +1,7 @@
 package com.example.core.data.di
 
 import com.example.core.data.interceptor.HeaderInterceptor
+import com.google.android.datatransport.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,12 +29,13 @@ object GitRetrofit {
     fun provideRetrofit(
         loggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: HeaderInterceptor
-        ): Retrofit {
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+    ): Retrofit {
+        val okHttpClientBuilder = OkHttpClient.Builder()
             .addInterceptor(headerInterceptor)
-            .build()
-
+        if (BuildConfig.DEBUG) {
+            okHttpClientBuilder.addInterceptor(loggingInterceptor)
+        }
+        val okHttpClient = okHttpClientBuilder.build()
         return Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .client(okHttpClient)
