@@ -1,0 +1,9 @@
+<resources>
+    <string name="logo">Logo</string>
+    <string name="appName">GitMit2</string>
+    <string name="addToken">Add token</string>
+    <string name="button">LogIn</string>
+    <string name="enterToken">"Enter Token"</string>
+    <string name="invalidToken">"Invalid token, please try again"</string>
+    <string name="logIn">"LogIn"</string>
+</resources>

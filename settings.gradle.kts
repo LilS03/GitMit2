@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,9 +22,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "GitMit"
 include(":app")
-include(":authentication")
-include(":mainflow")
-include(":userrepositories")
-include(":allusers")
-include(":profil")
-include(":details")
+include(":features:authentication")
+include(":features:userrepositories")
+include(":features:allusers")
+include(":features:profil")
+include(":features:details")
+include(":navigation")
+include(":core:data")
+include(":core:domain")
