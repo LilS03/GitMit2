@@ -1,13 +1,7 @@
 package com.example.features.mainflow.presentation
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Menu
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,39 +15,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
-
-data class BottomNavigationItem(
-    val title: String,
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector
-)
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainFlow() {
-    val items = listOf(
-        BottomNavigationItem(
-            title = "Home",
-            selectedIcon = Icons.Filled.Home,
-            unselectedIcon = Icons.Outlined.Home,
-        ),
-        BottomNavigationItem(
-            title = "Users",
-            selectedIcon = Icons.Filled.Menu,
-            unselectedIcon = Icons.Outlined.Menu,
-        ),
-        BottomNavigationItem(
-            title = "Profile",
-            selectedIcon = Icons.Filled.Person,
-            unselectedIcon = Icons.Outlined.Person,
-        ),
-    )
-    var selectedItemIndex by rememberSaveable {
-        mutableIntStateOf(0)
-    }
+    var selectedItemIndex by rememberSaveable { mutableIntStateOf(BottomNavigationScreen.Home.ordinal) }
+    val navController = rememberNavController()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -61,25 +34,22 @@ fun MainFlow() {
         Scaffold(
             bottomBar = {
                 NavigationBar {
-                    items.forEachIndexed { index, item ->
+                    BottomNavigationScreen.entries.forEachIndexed { index, screen ->
                         NavigationBarItem(
                             selected = selectedItemIndex == index,
                             onClick = {
                                 selectedItemIndex = index
+                                navController.navigate(screen.name)
                             },
-                            label = {
-                                Text(text = item.title)
-                            },
+                            label = { Text(text = screen.title) },
                             alwaysShowLabel = true,
                             icon = {
-                                BadgedBox(
-                                    badge = {}
-                                ) {
+                                BadgedBox(badge = {}) {
                                     Icon(
                                         imageVector = if (index == selectedItemIndex) {
-                                            item.selectedIcon
-                                        } else item.unselectedIcon,
-                                        contentDescription = item.title
+                                            screen.selectedIcon
+                                        } else screen.unselectedIcon,
+                                        contentDescription = screen.title
                                     )
                                 }
                             }
@@ -87,14 +57,36 @@ fun MainFlow() {
                     }
                 }
             }
-        ){
-
+        ) {
+            NavHost(
+                navController = navController,
+                startDestination = BottomNavigationScreen.Home.name
+            ) {
+                composable(BottomNavigationScreen.Home.name) { HomeScreen() }
+                composable(BottomNavigationScreen.Users.name) { UsersScreen() }
+                composable(BottomNavigationScreen.Profile.name) { ProfileScreen() }
+            }
         }
     }
 }
 
-@Preview
 @Composable
-fun ShowMainFlow(){
-    MainFlow()
+fun HomeScreen() {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+        Text(text = "Home Screen")
+    }
+}
+
+@Composable
+fun UsersScreen() {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+        Text(text = "Users Screen")
+    }
+}
+
+@Composable
+fun ProfileScreen() {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+        Text(text = "Profile Screen")
+    }
 }
