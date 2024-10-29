@@ -17,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -41,7 +42,11 @@ fun MainFlow() {
                                 selectedItemIndex = index
                                 navController.navigate(screen.name)
                             },
-                            label = { Text(text = screen.title) },
+                            label = {
+                                Text(
+                                    text = screen.title,
+                                    fontWeight = if (selectedItemIndex == index) FontWeight.Bold else FontWeight.Normal
+                                ) },
                             alwaysShowLabel = true,
                             icon = {
                                 BadgedBox(badge = {}) {
@@ -62,30 +67,44 @@ fun MainFlow() {
                 navController = navController,
                 startDestination = BottomNavigationScreen.Home.name
             ) {
-                composable(BottomNavigationScreen.Home.name) { HomeScreen() }
-                composable(BottomNavigationScreen.Users.name) { UsersScreen() }
-                composable(BottomNavigationScreen.Profile.name) { ProfileScreen() }
+                composable(BottomNavigationScreen.Home.name) {
+                    HomeScreen(backCall = {
+                        navController.popBackStack()
+                    })
+                }
+                composable(BottomNavigationScreen.Users.name) {
+                    UsersScreen(backCall = {
+                        navController.popBackStack()
+                        navController.navigate(BottomNavigationScreen.Home.name)
+                    })
+                }
+                composable(BottomNavigationScreen.Profile.name) {
+                    ProfileScreen(backCall = {
+                        navController.popBackStack()
+                        navController.navigate(BottomNavigationScreen.Home.name)
+                    })
+                }
             }
         }
     }
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(backCall: () -> Unit = {}) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(text = "Home Screen")
     }
 }
 
 @Composable
-fun UsersScreen() {
+fun UsersScreen(backCall: () -> Unit = {}) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(text = "Users Screen")
     }
 }
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(backCall: () -> Unit = {}) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(text = "Profile Screen")
     }
