@@ -1,8 +1,8 @@
 package com.example.features.mainflow.presentation
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -15,13 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainFlow() {
     val navController = rememberNavController()
@@ -48,7 +48,7 @@ fun MainFlow() {
                             },
                             label = {
                                 Text(
-                                    text = screen.title,
+                                    text = stringResource(id = screen.title),
                                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                                 )
                             },
@@ -57,7 +57,7 @@ fun MainFlow() {
                                 BadgedBox(badge = {}) {
                                     Icon(
                                         imageVector = if (isSelected) screen.selectedIcon else screen.unselectedIcon,
-                                        contentDescription = screen.title
+                                        contentDescription = stringResource(id = screen.title)
                                     )
                                 }
                             }
@@ -65,10 +65,11 @@ fun MainFlow() {
                     }
                 }
             }
-        ) {
+        ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = BottomNavigationScreen.Home.name
+                startDestination = BottomNavigationScreen.Home.name,
+                modifier = Modifier.padding(innerPadding)
             ) {
                 composable(BottomNavigationScreen.Home.name) { HomeScreen() }
                 composable(BottomNavigationScreen.Users.name) { UsersScreen() }

@@ -19,7 +19,6 @@ fun Navigation(){
         }
         composable(route = Screen.MainScreen.route) {
             MainFlow()
-            //MainScreen()
         }
     }
 }
