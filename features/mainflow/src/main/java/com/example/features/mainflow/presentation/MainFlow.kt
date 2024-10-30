@@ -35,12 +35,12 @@ fun MainFlow() {
             bottomBar = {
                 NavigationBar {
                     BottomNavigationScreen.entries.forEach { screen ->
-                        val isSelected = currentRoute?.destination?.route == screen.name
+                        val isSelected = currentRoute?.destination?.route == screen.route
                         NavigationBarItem(
                             selected = isSelected,
                             onClick = {
                                 if (!isSelected) {
-                                    navController.navigate(screen.name) {
+                                    navController.navigate(screen.route) {
                                         popUpTo(navController.graph.startDestinationId)
                                         launchSingleTop = true
                                     }
@@ -68,12 +68,12 @@ fun MainFlow() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = BottomNavigationScreen.Home.name,
+                startDestination = BottomNavigationScreen.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(BottomNavigationScreen.Home.name) { HomeScreen() }
-                composable(BottomNavigationScreen.Users.name) { UsersScreen() }
-                composable(BottomNavigationScreen.Profile.name) { ProfileScreen() }
+                composable(BottomNavigationScreen.Home.route) { HomeScreen() }
+                composable(BottomNavigationScreen.Users.route) { UsersScreen() }
+                composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
             }
         }
     }

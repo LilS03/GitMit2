@@ -14,21 +14,25 @@ import com.example.features.mainflow.R
 enum class BottomNavigationScreen(
     @StringRes val title: Int,
     val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector
+    val unselectedIcon: ImageVector,
+    val route: String
 ) {
     Home(
         title = R.string.homeScreen,
         selectedIcon = Icons.Filled.Home,
-        unselectedIcon = Icons.Outlined.Home
+        unselectedIcon = Icons.Outlined.Home,
+        route = "home"
     ),
     Users(
         title = R.string.usersScreen,
         selectedIcon = Icons.Filled.Menu,
-        unselectedIcon = Icons.Outlined.Menu
+        unselectedIcon = Icons.Outlined.Menu,
+        route = "users"
     ),
     Profile(
         title = R.string.profileScreen,
         selectedIcon = Icons.Filled.Person,
-        unselectedIcon = Icons.Outlined.Person
+        unselectedIcon = Icons.Outlined.Person,
+        route = "profile"
     )
 }
