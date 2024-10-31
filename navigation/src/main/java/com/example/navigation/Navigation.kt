@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.features.authentication.presentation.AuthScreen
+import com.example.features.mainflow.presentation.MainFlow
 
 @Composable
 fun Navigation(){
@@ -17,7 +18,7 @@ fun Navigation(){
             })
         }
         composable(route = Screen.MainScreen.route) {
-            //MainScreen()
+            MainFlow()
         }
     }
 }

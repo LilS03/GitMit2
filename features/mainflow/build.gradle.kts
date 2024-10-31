@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.navigation"
+    namespace = "com.example.features.mainflow"
     compileSdk = 34
 
     defaultConfig {
@@ -39,15 +41,22 @@ android {
 }
 
 dependencies {
+    // for hilt
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    // preview
+    implementation(libs.androidx.ui.tooling.preview.android)
+    // material3
+    implementation(libs.material3)
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.androidx.navigation.compose)
-
-    implementation(project(":features:authentication"))
-    implementation(project(":features:mainflow"))
-
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+kapt {
+    correctErrorTypes = true
 }

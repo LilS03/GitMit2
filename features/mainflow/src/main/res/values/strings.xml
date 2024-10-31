@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="homeScreen">Home</string>
+    <string name="usersScreen">Users</string>
+    <string name="profileScreen">Profile</string>
+</resources>
