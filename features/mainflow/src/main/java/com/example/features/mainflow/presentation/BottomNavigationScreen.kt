@@ -18,19 +18,19 @@ enum class BottomNavigationScreen(
     val route: String
 ) {
     Home(
-        title = R.string.homeScreen,
+        title = R.string.home_screen,
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
         route = "home"
     ),
     Users(
-        title = R.string.usersScreen,
+        title = R.string.users_screen,
         selectedIcon = Icons.Filled.Menu,
         unselectedIcon = Icons.Outlined.Menu,
         route = "users"
     ),
     Profile(
-        title = R.string.profileScreen,
+        title = R.string.profile_screen,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person,
         route = "profile"
