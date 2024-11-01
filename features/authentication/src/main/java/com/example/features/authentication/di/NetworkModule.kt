@@ -1,5 +1,6 @@
 package com.example.features.authentication.di
 
+import com.example.core.data.annotations.NoTokenRetrofit
 import com.example.features.authentication.data.retrofit.GitHubService
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,6 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideGitHubService(retrofit: Retrofit): GitHubService =
+    fun provideGitHubService(@NoTokenRetrofit retrofit: Retrofit): GitHubService =
         retrofit.create(GitHubService::class.java)
 }
