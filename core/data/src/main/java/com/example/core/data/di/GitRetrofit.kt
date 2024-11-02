@@ -50,7 +50,7 @@ object GitRetrofit {
     @TokenRetrofit
     @Provides
     @Singleton
-    fun provideRetrofit(
+    fun provideRetrofitWithToken(
         loggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: HeaderInterceptor,
         tokenInterceptor: TokenInterceptor

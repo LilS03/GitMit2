@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.features.userrepositories.presentation.RepoScreen
 
 @Composable
 fun MainFlow() {
@@ -71,18 +72,11 @@ fun MainFlow() {
                 startDestination = BottomNavigationScreen.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(BottomNavigationScreen.Home.route) { HomeScreen() }
+                composable(BottomNavigationScreen.Home.route) { RepoScreen() }
                 composable(BottomNavigationScreen.Users.route) { UsersScreen() }
                 composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
             }
         }
-    }
-}
-
-@Composable
-fun HomeScreen() {
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-        Text(text = "Home Screen")
     }
 }
 

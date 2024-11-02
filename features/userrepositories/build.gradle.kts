@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     // preview
     implementation(libs.androidx.ui.tooling.preview.android)
+    // material3
+    implementation(libs.material3)
     //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

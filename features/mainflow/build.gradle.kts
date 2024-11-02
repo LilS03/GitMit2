@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    // add projects
+    implementation(project(":features:userrepositories"))
     // for hilt
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
