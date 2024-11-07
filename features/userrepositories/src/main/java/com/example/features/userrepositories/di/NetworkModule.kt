@@ -1,7 +1,7 @@
 package com.example.features.userrepositories.di
 
 import com.example.core.data.annotations.TokenRetrofit
-import com.example.features.userrepositories.data.retrofit.GitHubServiceForRepos
+import com.example.features.userrepositories.data.retrofit.RepoService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +14,6 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideGitHubService(@TokenRetrofit retrofit: Retrofit): GitHubServiceForRepos =
-        retrofit.create(GitHubServiceForRepos::class.java)
+    fun provideGitHubService(@TokenRetrofit retrofit: Retrofit): RepoService =
+        retrofit.create(RepoService::class.java)
 }
