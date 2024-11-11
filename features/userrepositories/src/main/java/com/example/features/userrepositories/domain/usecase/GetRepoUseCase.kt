@@ -11,7 +11,7 @@ fun interface GetRepoUseCase{
 
 class GetRepoUseCaseImpl @Inject constructor(
     private val repository: GitRepoRepository
-): GetRepoUseCase{
-    override fun invoke(name: String, page: Int, per_page: Int)
-        = repository.getRepo(name, page, per_page)
+): GetRepoUseCase {
+    override fun invoke(name: String, page: Int, per_page: Int): Flow<List<Repo>> =
+        repository.getRepo(name, page, per_page)
 }

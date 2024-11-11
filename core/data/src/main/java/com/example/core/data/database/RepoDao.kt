@@ -1,4 +1,4 @@
-package com.example.features.userrepositories.data.database
+package com.example.core.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,5 +12,5 @@ interface RepoDao {
     fun getRepos(): Flow<List<RepoDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRepo(repoList: List<RepoDbModel>)
+    fun insertRepo(repoList: Flow<RepoDbModel>)
 }
