@@ -6,12 +6,12 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 fun interface GetRepoUseCase{
-    operator fun invoke(name: String, page: Int, per_page: Int): Flow<List<Repo>>
+    operator fun invoke(page: Int, per_page: Int): Flow<List<Repo>>
 }
 
 class GetRepoUseCaseImpl @Inject constructor(
     private val repository: GitRepoRepository
 ): GetRepoUseCase {
-    override fun invoke(name: String, page: Int, per_page: Int): Flow<List<Repo>> =
-        repository.getRepo(name, page, per_page)
+    override fun invoke(page: Int, per_page: Int): Flow<List<Repo>> =
+        repository.getRepo(page, per_page)
 }

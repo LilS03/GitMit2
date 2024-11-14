@@ -1,6 +1,6 @@
 package com.example.core.data.di
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.core.data.database.AppDatabase
 import com.example.core.data.database.RepoDao
@@ -8,17 +8,25 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
+
+    @Singleton
     @Provides
-    fun provideDatabase(app: Application): AppDatabase {
-        return Room.databaseBuilder(app, AppDatabase::class.java, "AppDatabase").build()
+    fun provideDatabase(context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
     }
 
+    @Singleton
     @Provides
-    fun provideRepositoryDao(db: AppDatabase): RepoDao {
-        return db.repoDao()
+    fun provideRepoDao(database: AppDatabase): RepoDao {
+        return database.repoDao()
     }
 }
