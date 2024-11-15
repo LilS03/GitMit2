@@ -1,6 +1,8 @@
 package com.example.features.userrepositories.data.repository
 
+import com.example.core.data.database.RepoDao
 import com.example.features.userrepositories.data.mappers.mapDtoToModel
+import com.example.features.userrepositories.data.mappers.mapModelToDBModel
 import com.example.features.userrepositories.data.retrofit.RepoService
 import com.example.features.userrepositories.domain.model.Repo
 import com.example.features.userrepositories.domain.repository.GitRepoRepository

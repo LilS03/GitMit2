@@ -16,13 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.features.userrepositories.presentation.effect.RepoEffect
 
 @Composable
 fun RepoScreen(
+    navigateToAuth: () -> Unit = {},
     viewModel: UserRepositoriesViewModel = hiltViewModel()
 ) {
     val repositories = viewModel.repositories.collectAsState()
     val isLoading = viewModel.isLoading.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.repoEffect.collect { effect ->
+            when (effect) {
+                is RepoEffect.NavigateToAuth -> navigateToAuth()
+            }
+        }
+    }
 
     LaunchedEffect(Unit) {
         viewModel.loadRepositories(1, 30)

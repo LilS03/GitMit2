@@ -20,5 +20,11 @@ fun Navigation(){
         composable(route = Screen.MainScreen.route) {
             MainFlow()
         }
+        composable(route = Screen.RepoScreen.route) {
+            AuthScreen(navigateToMainScreen = {
+                navController.popBackStack()
+                navController.navigate(Screen.MainScreen.route)
+            })
+        }
     }
 }
