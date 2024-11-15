@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun RepoScreen(viewModel: UserRepositoriesViewModel = hiltViewModel()) {
+fun RepoScreen(
+    viewModel: UserRepositoriesViewModel = hiltViewModel()
+) {
     val repositories = viewModel.repositories.collectAsState()
     val isLoading = viewModel.isLoading.collectAsState()
 
