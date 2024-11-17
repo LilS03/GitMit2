@@ -1,6 +1,6 @@
 package com.example.features.userrepositories.data.repository
 
-import com.example.core.data.database.RepoDao
+import com.example.core.data.database.dao.RepoDao
 import com.example.features.userrepositories.data.mappers.mapDbModelToModel
 import com.example.features.userrepositories.data.mappers.mapDtoToModel
 import com.example.features.userrepositories.data.mappers.mapModelToDBModel

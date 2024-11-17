@@ -7,9 +7,7 @@ import javax.inject.Inject
 class PreferencesRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ): PreferencesRepository {
-    override fun saveToken(token: String) {
-        sharedPreferencesHelper.saveToken(token)
-    }
+    override fun saveToken(token: String) = sharedPreferencesHelper.saveToken(token)
 
     override fun getToken(): String = sharedPreferencesHelper.getToken().orEmpty()
 }
