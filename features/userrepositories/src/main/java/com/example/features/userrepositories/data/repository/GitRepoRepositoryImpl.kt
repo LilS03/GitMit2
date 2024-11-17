@@ -1,6 +1,7 @@
 package com.example.features.userrepositories.data.repository
 
 import com.example.core.data.database.RepoDao
+import com.example.features.userrepositories.data.mappers.mapDbModelToModel
 import com.example.features.userrepositories.data.mappers.mapDtoToModel
 import com.example.features.userrepositories.data.mappers.mapModelToDBModel
 import com.example.features.userrepositories.data.retrofit.RepoService
@@ -12,14 +13,22 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class GitRepoRepositoryImpl @Inject constructor(
-    private val repoService: RepoService
+    private val repoService: RepoService,
+    private val repoDao: RepoDao
 ) : GitRepoRepository {
     override fun getRepo(page: Int, per_page: Int): Flow<List<Repo>> = flow {
         try {
             val repoDtoList = repoService.getRepos(page, per_page)
             val repoModels = repoDtoList.mapNotNull { mapDtoToModel(it) }
+            val repoDb = repoModels.map{ mapModelToDBModel(it) }
+            repoDao.insertRepo(repoDb)
             emit(repoModels)
         } catch (e: HttpException) {
+            if(e.code() == 401){
+                val repoDb = repoDao.getRepos()
+                val repoModel = repoDb.map { mapDbModelToModel(it) }
+                emit(repoModel)
+            }
             emit(emptyList())
         } catch (e: Exception) {
             emit(emptyList())
