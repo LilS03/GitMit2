@@ -20,8 +20,8 @@ object DatabaseModule {
         Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "app_database"
-        ).build()
+            "app_database.db"
+        ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
