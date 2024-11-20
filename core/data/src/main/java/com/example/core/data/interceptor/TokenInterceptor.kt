@@ -6,7 +6,7 @@ import okhttp3.Response
 import javax.inject.Inject
 
 class TokenInterceptor @Inject constructor(
-    private val preferencesRepository: PreferencesRepository,
+    private val preferencesRepository: PreferencesRepository
 ): Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

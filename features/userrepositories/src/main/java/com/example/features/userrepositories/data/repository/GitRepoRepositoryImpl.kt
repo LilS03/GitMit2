@@ -7,8 +7,10 @@ import com.example.features.userrepositories.data.mappers.mapModelToDBModel
 import com.example.features.userrepositories.data.retrofit.RepoService
 import com.example.features.userrepositories.domain.model.Repo
 import com.example.features.userrepositories.domain.repository.GitRepoRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -20,16 +22,17 @@ class GitRepoRepositoryImpl @Inject constructor(
         try {
             val repoDtoList = repoService.getRepos(page, per_page)
             val repoModels = repoDtoList.mapNotNull { mapDtoToModel(it) }
-            val repoDb = repoModels.map{ mapModelToDBModel(it) }
-            repoDao.insertRepo(repoDb)
             emit(repoModels)
+            withContext(Dispatchers.IO) {
+                val repoDb = repoModels.map { mapModelToDBModel(it) }
+                repoDao.insertRepo(repoDb)
+            }
         } catch (e: HttpException) {
             if(e.code() == 401){
                 val repoDb = repoDao.getRepos()
                 val repoModel = repoDb.map { mapDbModelToModel(it) }
                 emit(repoModel)
             }
-            emit(emptyList())
         } catch (e: Exception) {
             emit(emptyList())
         }
