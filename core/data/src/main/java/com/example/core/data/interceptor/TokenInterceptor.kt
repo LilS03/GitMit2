@@ -1,23 +1,23 @@
 package com.example.core.data.interceptor
 
-import com.example.core.data.helper.SharedPreferencesHelper
+import com.example.core.domain.repository.PreferencesRepository
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
 class TokenInterceptor @Inject constructor(
-    private val sharedPreferencesHelper: SharedPreferencesHelper
+    private val preferencesRepository: PreferencesRepository,
 ): Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
-        val token = sharedPreferencesHelper.getToken()
+        val token = preferencesRepository.getToken()
 
-        if (token.isNullOrEmpty()) {
+        if (token.isEmpty()) {
             return chain.proceed(originalRequest)
         }
 
         val modifiedRequest = originalRequest.newBuilder()
-            .addHeader("Authorization", "Bearer $token")
+            .header("Authorization", "Bearer $token")
             .build()
 
         return chain.proceed(modifiedRequest)
