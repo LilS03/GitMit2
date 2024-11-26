@@ -35,7 +35,7 @@ fun mapDtoToDBModel(repoDto: RepoDto): RepoDbModel? =
 fun mapDbModelToModel(dbModel: RepoDbModel): Repo =
     Repo(
         id = dbModel.id,
-        name = dbModel.name.orEmpty(),
-        language = dbModel.language.orEmpty(),
-        visibility = dbModel.visibility.orEmpty()
+        name = dbModel.name,
+        language = dbModel.language,
+        visibility = dbModel.visibility
     )

@@ -35,7 +35,7 @@ fun RepoScreen(
     }
 
     LaunchedEffect(Unit) {
-        viewModel.loadRepositories(1, 30)
+        viewModel.loadRepositories()
     }
 
     Column(

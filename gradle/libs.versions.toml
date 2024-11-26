@@ -20,6 +20,7 @@ materialVersion = "1.7.3"
 retrofit = "2.11.0"
 roomRuntime = "2.6.1"
 roomRuntimeVersion = "2.6.1"
+runtime = "1.7.5"
 rxandroid = "2.1.1"
 rxjavaVersion = "2.2.21"
 rxkotlin = "2.4.0"
@@ -38,6 +39,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-room-runtime-v241 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomRuntime" }
+androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
