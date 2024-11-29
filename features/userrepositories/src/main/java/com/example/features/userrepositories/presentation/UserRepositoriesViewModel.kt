@@ -35,14 +35,14 @@ class UserRepositoriesViewModel @Inject constructor(
         viewModelScope.launch {
             gitRepository.getRepo(currentPage, PER_PAGE).collect {
                 newRepos ->
-                    _repositories.value += newRepos
+                    _repositories.value = (_repositories.value + newRepos).distinctBy { it.id }
                     _isLoading.value = false
                     currentPage++
             }
         }
     }
     companion object{
-        private var CURRENT_PAGE = 1
-        private var PER_PAGE = 2
+        private const val CURRENT_PAGE = 1
+        private const val PER_PAGE = 2
     }
 }
