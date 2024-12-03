@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.features.allusers.presentation.UsersScreen
 import com.example.features.userrepositories.presentation.RepoScreen
 
 @Composable
@@ -77,13 +78,6 @@ fun MainFlow() {
                 composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
             }
         }
-    }
-}
-
-@Composable
-fun UsersScreen() {
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-        Text(text = "Users Screen")
     }
 }
 

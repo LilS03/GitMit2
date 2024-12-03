@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.core.data.database.AppDatabase
 import com.example.core.data.database.dao.RepoDao
+import com.example.core.data.database.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +28,9 @@ object DatabaseModule {
     @Provides
     fun provideRepoDao(database: AppDatabase): RepoDao =
         database.repoDao()
+
+    @Singleton
+    @Provides
+    fun provideUserDao(database: AppDatabase): UserDao =
+        database.userDao()
 }
