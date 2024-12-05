@@ -1,6 +1,5 @@
 package com.example.features.allusers.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.features.allusers.domain.model.User
@@ -44,6 +43,6 @@ class UsersViewModel @Inject constructor(
     }
     companion object{
         private const val CURRENT_PAGE = 1
-        private const val PER_PAGE = 2
+        private const val PER_PAGE = 5
     }
 }

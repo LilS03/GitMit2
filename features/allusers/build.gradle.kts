@@ -44,6 +44,8 @@ dependencies {
     implementation(project(":core:data"))
     // retrofit
     implementation(libs.retrofit)
+    // forImage
+    implementation(libs.coil.kt.coil.compose)
     // hilt
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)

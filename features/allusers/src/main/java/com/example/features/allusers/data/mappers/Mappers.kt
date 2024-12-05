@@ -8,9 +8,8 @@ fun mapDtoToModel(userDto: UserDto): User? =
     userDto.id?.let {
         User(
             id = it,
-            login = userDto.login,
-            name = userDto.name,
-            bio = userDto.bio
+            login = userDto.login.orEmpty(),
+            avatar_url = userDto.avatarUrl.orEmpty()
         )
     }
 
@@ -18,17 +17,15 @@ fun mapModelToDBModel(user: User): UserDbModel =
     UserDbModel(
         id = user.id,
         login = user.login,
-        name = user.name,
-        bio = user.bio
+        avatar_url = user.avatar_url
     )
 
 fun mapDtoToDBModel(userDto: UserDto): UserDbModel? =
     userDto.id?.let {
         UserDbModel(
             id = it,
-            login = userDto.login,
-            name = userDto.name,
-            bio = userDto.bio
+            login = userDto.login.orEmpty(),
+            avatar_url = userDto.avatarUrl.orEmpty()
         )
     }
 
@@ -36,6 +33,5 @@ fun mapDbModelToModel(dbModel: UserDbModel): User =
     User(
         id = dbModel.id,
         login = dbModel.login,
-        name = dbModel.name,
-        bio = dbModel.bio
+        avatar_url = dbModel.avatar_url
     )

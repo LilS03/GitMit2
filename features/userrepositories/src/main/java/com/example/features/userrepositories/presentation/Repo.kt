@@ -25,7 +25,7 @@ fun Repo(repo: Repo) {
                 .fillMaxSize()
         ) {
             Text(text = repo.name)
-            Card() {
+            Card {
                 Text(text = repo.visibility)
             }
             Text(text = "Language: ${repo.language}")
