@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">name</string>
+    <string name="users">Users</string>
+    <string name="noUsers">No users found</string>
+</resources>

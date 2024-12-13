@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":core:data"))
+    implementation(project(":features:details"))
     // retrofit
     implementation(libs.retrofit)
     // forImage

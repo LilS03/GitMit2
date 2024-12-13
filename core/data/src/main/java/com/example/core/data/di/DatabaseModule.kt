@@ -3,8 +3,10 @@ package com.example.core.data.di
 import android.content.Context
 import androidx.room.Room
 import com.example.core.data.database.AppDatabase
+import com.example.core.data.database.dao.ProfileDao
 import com.example.core.data.database.dao.RepoDao
 import com.example.core.data.database.dao.UserDao
+import com.example.core.data.database.dao.UserDetailsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,4 +35,14 @@ object DatabaseModule {
     @Provides
     fun provideUserDao(database: AppDatabase): UserDao =
         database.userDao()
+
+    @Singleton
+    @Provides
+    fun provideUserDetailsDao(database: AppDatabase): UserDetailsDao =
+        database.userDetailsDao()
+
+    @Singleton
+    @Provides
+    fun provideProfileDao(database: AppDatabase): ProfileDao =
+        database.profileDao()
 }

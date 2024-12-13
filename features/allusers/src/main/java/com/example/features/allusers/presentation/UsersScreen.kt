@@ -16,9 +16,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.features.allusers.R
 import com.example.features.allusers.presentation.effect.UserEffect
 import com.example.features.allusers.presentation.viewmodel.UsersViewModel
 
@@ -59,14 +61,14 @@ fun UsersScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Users")
+        Text(stringResource(id = R.string.users))
         when {
             isLoading && repositories.isEmpty() -> {
                 CircularProgressIndicator()
             }
 
             repositories.isEmpty() -> {
-                Text(text = "No users found")
+                Text(stringResource(id = R.string.noUsers))
             }
 
             else -> {

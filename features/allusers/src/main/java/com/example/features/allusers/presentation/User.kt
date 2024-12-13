@@ -1,11 +1,7 @@
 package com.example.features.allusers.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -21,28 +17,32 @@ import com.example.features.allusers.R
 import com.example.features.allusers.domain.model.User
 
 @Composable
-fun User(user: User) {
+fun User(
+    user: User
+) {
     Card(
         modifier = Modifier
             .padding(horizontal = 4.dp, vertical = 6.dp)
             .wrapContentHeight(),
+            //.clickable { UserDetailsScreen(user.login) },
         shape = RoundedCornerShape(8.dp),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            val painter = rememberAsyncImagePainter(model = user.avatar_url)
+            val painter = rememberAsyncImagePainter(model = user.avatarUrl)
             Image(
                 painter = painter,
                 contentDescription = stringResource(id = R.string.name),
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(40.dp)
                     .clip(CircleShape)
             )
             Text(
-                text = " ${user.login} ",
+                text = user.login,
                 modifier = Modifier
                     .padding(start = 8.dp)
                     .align(Alignment.CenterVertically)

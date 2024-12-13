@@ -16,9 +16,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.features.userrepositories.R
 import com.example.features.userrepositories.presentation.effect.RepoEffect
 
 @Composable
@@ -57,14 +59,14 @@ fun RepoScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Repositories")
+        Text(stringResource(id = R.string.repos))
         when {
             isLoading && repositories.isEmpty() -> {
                 CircularProgressIndicator()
             }
 
             repositories.isEmpty() -> {
-                Text(text = "No repositories found")
+                Text(stringResource(id = R.string.noRepos))
             }
 
             else -> {

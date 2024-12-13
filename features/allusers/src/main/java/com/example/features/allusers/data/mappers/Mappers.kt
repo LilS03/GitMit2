@@ -9,7 +9,7 @@ fun mapDtoToModel(userDto: UserDto): User? =
         User(
             id = it,
             login = userDto.login.orEmpty(),
-            avatar_url = userDto.avatarUrl.orEmpty()
+            avatarUrl = userDto.avatarUrl.orEmpty()
         )
     }
 
@@ -17,7 +17,7 @@ fun mapModelToDBModel(user: User): UserDbModel =
     UserDbModel(
         id = user.id,
         login = user.login,
-        avatar_url = user.avatar_url
+        avatar_url = user.avatarUrl
     )
 
 fun mapDtoToDBModel(userDto: UserDto): UserDbModel? =
@@ -33,5 +33,5 @@ fun mapDbModelToModel(dbModel: UserDbModel): User =
     User(
         id = dbModel.id,
         login = dbModel.login,
-        avatar_url = dbModel.avatar_url
+        avatarUrl = dbModel.avatar_url
     )

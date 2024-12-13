@@ -1,6 +1,5 @@
 package com.example.features.allusers.data.repository
 
-import android.util.Log
 import com.example.core.data.database.dao.UserDao
 import com.example.features.allusers.data.mappers.mapDbModelToModel
 import com.example.features.allusers.data.mappers.mapDtoToModel
@@ -35,7 +34,6 @@ class UsersRepositoryImpl @Inject constructor(
                 emit(userModel)
             }
         } catch (e: Exception) {
-            Log.e("RepoImpl", "$e")
             emit(emptyList())
         }
     }
