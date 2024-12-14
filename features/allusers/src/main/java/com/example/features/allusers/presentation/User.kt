@@ -1,7 +1,12 @@
 package com.example.features.allusers.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -18,13 +23,14 @@ import com.example.features.allusers.domain.model.User
 
 @Composable
 fun User(
-    user: User
+    user: User,
+    navigateToDetails: (String) -> Unit
 ) {
     Card(
         modifier = Modifier
             .padding(horizontal = 4.dp, vertical = 6.dp)
-            .wrapContentHeight(),
-            //.clickable { UserDetailsScreen(user.login) },
+            .wrapContentHeight()
+            .clickable { navigateToDetails(user.login) },
         shape = RoundedCornerShape(8.dp),
     ) {
         Row(

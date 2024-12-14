@@ -77,7 +77,7 @@ fun UsersScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(repositories) { user ->
-                        User(user)
+                        User(user, navigateToDetails = {})
                     }
                 }
             }

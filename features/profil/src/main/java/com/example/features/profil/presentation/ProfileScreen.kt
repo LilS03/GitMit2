@@ -39,11 +39,6 @@ fun ProfileScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         profile?.let { user ->
-            Text(text = user.name)
-            Text(text = user.login)
-            Text(text = stringResource(id = R.string.followers) + user.followers)
-            Text(text = stringResource(id = R.string.following) + user.following)
-            Text(text = stringResource(id = R.string.publicRepos) + user.publicRepos)
             val painter = rememberAsyncImagePainter(model = user.avatarUrl)
             Image(
                 painter = painter,
@@ -52,8 +47,14 @@ fun ProfileScreen(
                     .size(100.dp)
                     .clip(CircleShape)
             )
+            Text(text = user.name)
+            Text(text = user.login)
+            Text(text = stringResource(id = R.string.followers) + user.followers)
+            Text(text = stringResource(id = R.string.following) + user.following)
+            Text(text = stringResource(id = R.string.publicRepos) + user.publicRepos)
         } ?: run {
             CircularProgressIndicator()
         }
     }
+
 }

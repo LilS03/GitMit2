@@ -4,6 +4,6 @@ import com.example.core.data.model.UserDto
 import retrofit2.http.GET
 
 interface ProfileService {
-    @GET("users")
+    @GET("user")
     suspend fun getProfile(): UserDto
 }
