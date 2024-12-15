@@ -3,4 +3,6 @@
     <string name="followers">Followers: </string>
     <string name="following">"Following: "</string>
     <string name="publicRepos">"Public Repos: "</string>
+    <string name="userRepositories">"User repositories"</string>
+    <string name="noRepos">No repos</string>
 </resources>

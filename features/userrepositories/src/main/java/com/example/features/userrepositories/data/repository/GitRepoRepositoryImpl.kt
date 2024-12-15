@@ -28,13 +28,19 @@ class GitRepoRepositoryImpl @Inject constructor(
                 repoDao.insertRepo(repoDb)
             }
         } catch (e: HttpException) {
-            if(e.code() == 401){
-                val repoDb = repoDao.getRepos()
-                val repoModel = repoDb.map { mapDbModelToModel(it) }
-                emit(repoModel)
-            }
+            val repoDb = repoDao.getRepos()
+            val repoModel = repoDb.map { mapDbModelToModel(it) }
+            emit(repoModel)
+
         } catch (e: Exception) {
             emit(emptyList())
         }
+    }
+
+    override fun getUserRepos(username: String, page: Int, per_page: Int): Flow<List<Repo>> = flow {
+        getRepo(page, per_page)
+        val userRepos = repoService.getUserRepos(username, page, per_page)
+        val user = userRepos.mapNotNull { mapDtoToModel(it) }
+        emit(user)
     }
 }

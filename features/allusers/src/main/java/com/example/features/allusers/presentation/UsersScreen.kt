@@ -17,19 +17,19 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.features.allusers.R
 import com.example.features.allusers.presentation.effect.UserEffect
 import com.example.features.allusers.presentation.viewmodel.UsersViewModel
 
-
 @Composable
 fun UsersScreen(
+    navController: NavController,
     navigateToAuth: () -> Unit = {},
-    viewModel: UsersViewModel = hiltViewModel()
-) {
+    ) {
+    val viewModel: UsersViewModel = hiltViewModel()
     val repositories by viewModel.repositories.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
@@ -77,17 +77,12 @@ fun UsersScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(repositories) { user ->
-                        User(user, navigateToDetails = {})
+                        User(user) { username ->
+                            navController.navigate(Screen.UserDetails.createRoute(username))
+                        }
                     }
                 }
             }
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun ShowScreenPreview() {
-    UsersScreen()
-}
-

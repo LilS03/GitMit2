@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":features:userrepositories"))
     implementation(project(":features:allusers"))
     implementation(project(":features:profil"))
+    implementation(project(":features:details"))
     // for hilt
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)

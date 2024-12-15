@@ -19,14 +19,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.features.allusers.presentation.Screen
 import com.example.features.allusers.presentation.UsersScreen
+import com.example.features.details.presentation.UserDetailsScreen
 import com.example.features.profil.presentation.ProfileScreen
 import com.example.features.userrepositories.presentation.RepoScreen
 
 @Composable
 fun MainFlow() {
     val navController = rememberNavController()
-    val currentRoute by navController.currentBackStackEntryAsState()
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -35,15 +37,18 @@ fun MainFlow() {
         Scaffold(
             bottomBar = {
                 NavigationBar {
-                    BottomNavigationScreen.entries.forEach { screen ->
-                        val isSelected = currentRoute?.destination?.route == screen.route
+                    BottomNavigationScreen.values().forEach { screen ->
+                        val isSelected = currentBackStackEntry?.destination?.route == screen.route
                         NavigationBarItem(
                             selected = isSelected,
                             onClick = {
                                 if (!isSelected) {
                                     navController.navigate(screen.route) {
-                                        popUpTo(navController.graph.startDestinationId)
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            saveState = true
+                                        }
                                         launchSingleTop = true
+                                        restoreState = true
                                     }
                                 }
                             },
@@ -69,12 +74,18 @@ fun MainFlow() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = BottomNavigationScreen.Home.route,
+                startDestination = Screen.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(BottomNavigationScreen.Home.route) { RepoScreen() }
-                composable(BottomNavigationScreen.Users.route) { UsersScreen() }
-                composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
+                composable(Screen.Home.route) { RepoScreen() }
+                composable(Screen.Users.route) { UsersScreen(navController) }
+                composable(Screen.Profile.route) { ProfileScreen() }
+                composable(Screen.UserDetails.route) { backStackEntry ->
+                    val username = backStackEntry.arguments?.getString("username")
+                    if (username != null) {
+                        UserDetailsScreen(username)
+                    }
+                }
             }
         }
     }
