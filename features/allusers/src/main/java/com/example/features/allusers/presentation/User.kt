@@ -39,9 +39,8 @@ fun User(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val painter = rememberAsyncImagePainter(model = user.avatarUrl)
             Image(
-                painter = painter,
+                painter = rememberAsyncImagePainter(model = user.avatarUrl),
                 contentDescription = stringResource(id = R.string.name),
                 modifier = Modifier
                     .size(40.dp)

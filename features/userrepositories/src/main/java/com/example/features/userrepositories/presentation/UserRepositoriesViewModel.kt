@@ -1,5 +1,8 @@
 package com.example.features.userrepositories.presentation
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.features.userrepositories.domain.model.Repo
@@ -23,25 +26,30 @@ class UserRepositoriesViewModel @Inject constructor(
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
+    var canPaginate by mutableStateOf(false)
 
     private val _repoEffect = MutableSharedFlow<RepoEffect>()
     val repoEffect = _repoEffect.asSharedFlow()
 
     private var currentPage = CURRENT_PAGE
 
-    fun loadRepositories() {
-        if (_isLoading.value) return
-        _isLoading.value = true
-        viewModelScope.launch {
-            gitRepository.getRepo(currentPage, PER_PAGE).collect {
-                newRepos ->
-                    _repositories.value = (_repositories.value + newRepos).distinctBy { it.id }
-                    _isLoading.value = false
+    init {
+        loadRepositories()
+    }
+
+     fun loadRepositories() = viewModelScope.launch {
+        if (currentPage == 1 || canPaginate) {
+            gitRepository.getRepo(currentPage, PER_PAGE).collect() { newRepos ->
+                canPaginate = newRepos.size == PER_PAGE
+                _isLoading.value = true
+                _repositories.value = (_repositories.value + newRepos).distinctBy { it.id }
+                if (canPaginate && _isLoading.value)
                     currentPage++
             }
         }
     }
-    companion object{
+
+    companion object {
         private const val CURRENT_PAGE = 1
         private const val PER_PAGE = 2
     }

@@ -12,7 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,16 +42,17 @@ fun RepoScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
-        viewModel.loadRepositories()
+    val shouldStartPaginate = remember {
+        derivedStateOf {
+            viewModel.canPaginate &&
+                    (listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: -9) >=
+                    (listState.layoutInfo.totalItemsCount - 6)
+        }
     }
 
-    LaunchedEffect(listState) {
-        snapshotFlow { listState.layoutInfo.visibleItemsInfo }.collect {
-            listState.interactionSource.interactions.collect {
-                viewModel.loadRepositories()
-            }
-        }
+    LaunchedEffect(key1 = shouldStartPaginate.value) {
+        if (shouldStartPaginate.value && isLoading)
+            viewModel.loadRepositories()
     }
 
     Column(

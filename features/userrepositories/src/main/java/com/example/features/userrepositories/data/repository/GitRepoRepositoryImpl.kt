@@ -38,7 +38,6 @@ class GitRepoRepositoryImpl @Inject constructor(
     }
 
     override fun getUserRepos(username: String, page: Int, per_page: Int): Flow<List<Repo>> = flow {
-        getRepo(page, per_page)
         val userRepos = repoService.getUserRepos(username, page, per_page)
         val user = userRepos.mapNotNull { mapDtoToModel(it) }
         emit(user)
