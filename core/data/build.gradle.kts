@@ -53,6 +53,9 @@ dependencies {
     implementation(libs.converter.gson)
     // interceptor
     implementation(libs.logging.interceptor)
+    // room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
     //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

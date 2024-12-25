@@ -54,6 +54,8 @@ android {
 dependencies {
     // add projects
     implementation(project(":features:authentication"))
+    implementation(project(":features:userrepositories"))
+    implementation(project(":core:data"))
     implementation(project(":navigation"))
     //hilt
     kapt(libs.hilt.android.compiler)
@@ -78,4 +80,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+kapt {
+    correctErrorTypes = true
 }

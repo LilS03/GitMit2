@@ -41,7 +41,21 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core:data"))
+    implementation(project(":features:userrepositories"))
+    // retrofit
+    implementation(libs.retrofit)
+    // forImage
+    implementation(libs.coil.kt.coil.compose)
+    // hilt
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    // preview
+    implementation(libs.androidx.ui.tooling.preview.android)
+    // material3
+    implementation(libs.material3)
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

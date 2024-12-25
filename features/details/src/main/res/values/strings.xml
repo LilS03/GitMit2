@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="followers">Followers: </string>
+    <string name="following">"Following: "</string>
+    <string name="publicRepos">"Public Repos: "</string>
+    <string name="userRepositories">"User repositories"</string>
+    <string name="noRepos">No repos</string>
+    <string name="loading">Loading...</string>
+</resources>
