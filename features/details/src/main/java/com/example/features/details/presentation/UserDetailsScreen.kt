@@ -87,6 +87,7 @@ fun UserDetailsScreen(
                     }
                     item {
                         if (isLoading) {
+                            Text(stringResource(id = R.string.loading))
                             CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
                         }
                     }

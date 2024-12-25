@@ -15,7 +15,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,7 +30,7 @@ fun RepoScreen(
     viewModel: UserRepositoriesViewModel = hiltViewModel()
 ) {
     val repositories by viewModel.repositories.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
+    val canPaginate = viewModel.canPaginate
     val listState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
@@ -44,14 +43,14 @@ fun RepoScreen(
 
     val shouldStartPaginate = remember {
         derivedStateOf {
-            viewModel.canPaginate &&
-                    (listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: -9) >=
-                    (listState.layoutInfo.totalItemsCount - 6)
+            canPaginate &&
+                    (listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: -1) >=
+                    (listState.layoutInfo.totalItemsCount - 1)
         }
     }
 
     LaunchedEffect(key1 = shouldStartPaginate.value) {
-        if (shouldStartPaginate.value && isLoading)
+        if (shouldStartPaginate.value && canPaginate)
             viewModel.loadRepositories()
     }
 
@@ -64,7 +63,8 @@ fun RepoScreen(
     ) {
         Text(stringResource(id = R.string.repos))
         when {
-            isLoading && repositories.isEmpty() -> {
+            canPaginate && repositories.isEmpty() -> {
+                Text(stringResource(id = R.string.loading))
                 CircularProgressIndicator()
             }
 

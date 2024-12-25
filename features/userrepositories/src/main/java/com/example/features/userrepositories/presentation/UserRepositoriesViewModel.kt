@@ -23,9 +23,6 @@ class UserRepositoriesViewModel @Inject constructor(
 
     private val _repositories = MutableStateFlow<List<Repo>>(emptyList())
     val repositories: StateFlow<List<Repo>> = _repositories
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
     var canPaginate by mutableStateOf(false)
 
     private val _repoEffect = MutableSharedFlow<RepoEffect>()
@@ -39,11 +36,10 @@ class UserRepositoriesViewModel @Inject constructor(
 
      fun loadRepositories() = viewModelScope.launch {
         if (currentPage == 1 || canPaginate) {
-            gitRepository.getRepo(currentPage, PER_PAGE).collect() { newRepos ->
+            gitRepository.getRepo(currentPage, PER_PAGE).collect { newRepos ->
                 canPaginate = newRepos.size == PER_PAGE
-                _isLoading.value = true
                 _repositories.value = (_repositories.value + newRepos).distinctBy { it.id }
-                if (canPaginate && _isLoading.value)
+                if (canPaginate)
                     currentPage++
             }
         }
